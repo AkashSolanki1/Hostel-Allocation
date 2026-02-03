@@ -1,9 +1,8 @@
-package sevice;
+package com.akash.hostel_allocation.Hostel.Allocation.sevice;
 
-
-import model.Room;
+import com.akash.hostel_allocation.Hostel.Allocation.model.Room;
+import com.akash.hostel_allocation.Hostel.Allocation.repository.RoomRepository;
 import org.springframework.stereotype.Service;
-import repository.RoomRepository;
 
 import java.util.Comparator;
 import java.util.List;
@@ -26,14 +25,13 @@ public class RoomService {
         return roomRepository.findAll();
     }
 
-    // 🔥 Allocation Logic
+    // 🔥 Smallest suitable room allocation
     public Optional<Room> allocateRoom(int students, boolean needsAC, boolean needsWashroom) {
-
         return roomRepository.findAll()
                 .stream()
                 .filter(r -> r.getCapacity() >= students)
-                .filter(r -> r.isHasAC() == needsAC)
-                .filter(r -> r.isHasAttachedWashroom() == needsWashroom)
+                .filter(r -> r.isAc() == needsAC)
+                .filter(r -> r.isAttachedWashroom() == needsWashroom)
                 .min(Comparator.comparingInt(Room::getCapacity));
     }
 }

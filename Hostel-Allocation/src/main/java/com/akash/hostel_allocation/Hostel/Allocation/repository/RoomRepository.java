@@ -1,7 +1,6 @@
-package repository;
+package com.akash.hostel_allocation.Hostel.Allocation.repository;
 
-
-import model.Room;
+import com.akash.hostel_allocation.Hostel.Allocation.model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoomRepository extends JpaRepository<Room, Long> {

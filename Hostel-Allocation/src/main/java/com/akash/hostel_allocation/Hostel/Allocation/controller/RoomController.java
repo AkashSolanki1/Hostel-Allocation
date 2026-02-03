@@ -1,11 +1,11 @@
-package controller;
+package com.akash.hostel_allocation.Hostel.Allocation.controller;
 
 
-import model.Room;
+import com.akash.hostel_allocation.Hostel.Allocation.model.Room;
+import com.akash.hostel_allocation.Hostel.Allocation.sevice.RoomService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import sevice.RoomService;
 
 import java.util.Optional;
 
@@ -49,11 +49,12 @@ public class RoomController {
     @PostMapping("/allocate")
     public String allocateRoom(
             @RequestParam int students,
-            @RequestParam boolean needsAC,
-            @RequestParam boolean needsWashroom,
+            @RequestParam(defaultValue = "false") boolean needsAC,
+            @RequestParam(defaultValue = "false") boolean needsWashroom,
             Model model) {
 
-        Optional<Room> room = roomService.allocateRoom(students, needsAC, needsWashroom);
+        Optional<Room> room =
+                roomService.allocateRoom(students, needsAC, needsWashroom);
 
         model.addAttribute("result",
                 room.map(r -> "Allocated Room: " + r.getRoomNo())

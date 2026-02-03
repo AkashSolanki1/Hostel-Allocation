@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Room</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="navbar">
+    <h1>🏨 Hostel Allocation</h1>
+    <div>
+        <a href="/rooms">Rooms</a>
+        <a href="/allocate">Allocate</a>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Add New Room</h2>
+
+    <form th:action="@{/add-room}" th:object="${room}" method="post">
+        <label>Room Number</label>
+        <input type="text" th:field="*{roomNo}" required>
+
+        <label>Capacity</label>
+        <input type="number" th:field="*{capacity}" required>
+
+        <label>
+            <input type="checkbox" th:field="*{ac}"> AC Available
+        </label>
+
+        <label>
+            <input type="checkbox" th:field="*{attachedWashroom}">
+            Attached Washroom
+        </label>
+
+        <button type="submit">Add Room</button>
+    </form>
+</div>
+
+</body>
+</html>

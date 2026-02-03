@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rooms</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="navbar">
+    <h1>🏨 Hostel Allocation</h1>
+    <div>
+        <a href="/add-room">Add Room</a>
+        <a href="/allocate">Allocate</a>
+    </div>
+</div>
+
+<div class="card">
+    <h2>All Rooms</h2>
+
+    <table>
+        <tr>
+            <th>Room No</th>
+            <th>Capacity</th>
+            <th>AC</th>
+            <th>Washroom</th>
+        </tr>
+
+        <tr th:each="room : ${rooms}">
+            <td th:text="${room.roomNo}"></td>
+            <td th:text="${room.capacity}"></td>
+            <td th:text="${room.ac ? 'Yes' : 'No'}"></td>
+            <td th:text="${room.attachedWashroom ? 'Yes' : 'No'}"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
